@@ -68,7 +68,7 @@ def pin_appraisal_report(report_content):
     return report_ipfs_hash
 
 
-st.title("Digital Art Registry Appraisal System")
+st.title("Digital Art Registry Minting System")
 st.write("Choose an account to get started")
 accounts = w3.eth.accounts
 address = st.selectbox("Select Artwork Owner", options=accounts)
@@ -105,19 +105,52 @@ if st.button("Register Artwork"):
 st.markdown("---")
 
 ################################################################################
+# Display a Token
+################################################################################
+st.markdown("### Check Balance of an Account")
+
+# Let user select an account address from the list
+selected_address = st.selectbox("Select Account", options=accounts)
+
+# Call 'balanceOf' contract function to display the tokens belonging to the selected address
+tokens = contract.functions.balanceOf(selected_address).call()
+st.write(f"This address owns {tokens} tokens")
+
+st.markdown("### Check  Ownership and Display Token")
+
+total_token_supply = contract.functions.totalSupply().call()
+
+# Show the list of all tokens and let user select one to display its owner and URI 
+token_id = st.selectbox("Artwork Tokens", list(range(total_token_supply)))
+
+if st.button("Display"):
+
+    # Get the art token's owner
+    owner = contract.functions.ownerOf(token_id).call()
+    
+    st.write(f"The token is registered to {owner}")
+
+    # Get the art token's URI
+    token_uri = contract.functions.tokenURI(token_id).call()
+
+    st.write(f"The tokenURI is {token_uri}")
+    st.image(token_uri)
+
+
+################################################################################
 # Mint NFT 
 ################################################################################
 # Display: safemint, maxsupply, and balance
 st.markdown("## Mint NFT")
-#tokens = contract.functions.totalSupply().call()
-#token_id = st.selectbox("Choose an Art Token ID", list(range(tokens)))
-token_id = st.text_input("Enter a token id")
+
 # Get the token's URI
 mint_token_uri = st.text_input("The URI to the artwork")
 mint_address = st.selectbox("Select Address to Mint", options=accounts)
+
 # If the "Mint NFT" button is clicked: call contract function using token_id, mint_address, and token_uri 
 if st.button("Mint NFT"):
-
+    # Set token_id equal to the current 'totalSupply' value in the contract 
+    token_id = contract.functions.totalSupply().call()
     contract.functions.safeMint(int(token_id), mint_address, mint_token_uri).transact({'from': address, 'gas': 1000000})
 st.markdown("---")
 
