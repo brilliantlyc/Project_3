@@ -1,3 +1,4 @@
+from email.mime import image
 import os
 import json
 from web3 import Web3
@@ -21,7 +22,7 @@ w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 def load_contract():
 
     # Load the contract ABI
-    with open(Path('./contracts/compiled/digitalartregistry_abi.json')) as f:
+    with open(Path('./contracts/compiled/FintechNFT_abi.json')) as f:
         contract_abi = json.load(f)
 
     # Set the contract address (this is the address of the deployed contract)
@@ -70,7 +71,7 @@ def pin_appraisal_report(report_content):
 st.title("Digital Art Registry Appraisal System")
 st.write("Choose an account to get started")
 accounts = w3.eth.accounts
-address = st.selectbox("Select Account", options=accounts)
+address = st.selectbox("Select Artwork Owner", options=accounts)
 st.markdown("---")
 
 ################################################################################
@@ -97,59 +98,29 @@ if st.button("Register Artwork"):
     st.write("Transaction receipt mined:")
     st.write(dict(receipt))
     st.write("You can view the pinned metadata file with the following IPFS Gateway Link")
+    #token_uri = "[Artwork IPFS Gateway Link](https://ipfs.io/ipfs/{artwork_ipfs_hash})"
     st.markdown(f"[Artwork IPFS Gateway Link](https://ipfs.io/ipfs/{artwork_ipfs_hash})")
-st.markdown("---")
-
-
-################################################################################
-# Appraise Art
-################################################################################
-st.markdown("## Appraise Artwork")
-tokens = contract.functions.totalSupply().call()
-token_id = st.selectbox("Choose an Art Token ID", list(range(tokens)))
-new_appraisal_value = st.text_input("Enter the new appraisal amount")
-appraisal_report_content = st.text_area("Enter details for the Appraisal Report")
-if st.button("Appraise Artwork"):
-
-    # Use Pinata to pin an appraisal report for the report URI
-    appraisal_report_ipfs_hash =  pin_appraisal_report(appraisal_report_content)
-    report_uri = f"ipfs://{appraisal_report_ipfs_hash}"
-
-    # Use the token_id and the report_uri to record the appraisal
-    tx_hash = contract.functions.newAppraisal(
-        token_id,
-        int(new_appraisal_value),
-        report_uri
-    ).transact({"from": w3.eth.accounts[0]})
-    receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-    st.write(receipt)
+    #image_uri = artwork_ipfs_hash[1]
+    # st.image(f"https://ipfs.io/ipfs/{image_uri}")
 st.markdown("---")
 
 ################################################################################
-# Get Appraisals
+# Mint NFT 
 ################################################################################
-st.markdown("## Get the appraisal report history")
-art_token_id = st.number_input("Artwork ID", value=0, step=1)
-if st.button("Get Appraisal Reports"):
-    appraisal_filter = contract.events.Appraisal.createFilter(
-        fromBlock=0, argument_filters={"tokenId": art_token_id}
-    )
-    reports = appraisal_filter.get_all_entries()
-    if reports:
-        for report in reports:
-            report_dictionary = dict(report)
-            st.markdown("### Appraisal Report Event Log")
-            st.write(report_dictionary)
-            st.markdown("### Pinata IPFS Report URI")
-            report_uri = report_dictionary["args"]["reportURI"]
-            report_ipfs_hash = report_uri[7:]
-            st.markdown(
-                f"The report is located at the following URI: "
-                f"{report_uri}"
-            )
-            st.write("You can also view the report URI with the following ipfs gateway link")
-            st.markdown(f"[IPFS Gateway Link](https://ipfs.io/ipfs/{report_ipfs_hash})")
-            st.markdown("### Appraisal Event Details")
-            st.write(report_dictionary["args"])
-    else:
-        st.write("This artwork has no new appraisals")
+# Display: safemint, maxsupply, and balance
+st.markdown("## Mint NFT")
+#tokens = contract.functions.totalSupply().call()
+#token_id = st.selectbox("Choose an Art Token ID", list(range(tokens)))
+token_id = st.text_input("Enter a token id")
+# Get the token's URI
+mint_token_uri = st.text_input("The URI to the artwork")
+mint_address = st.selectbox("Select Address to Mint", options=accounts)
+# If the "Mint NFT" button is clicked: call contract function using token_id, mint_address, and token_uri 
+if st.button("Mint NFT"):
+
+    contract.functions.safeMint(int(token_id), mint_address, mint_token_uri).transact({'from': address, 'gas': 1000000})
+st.markdown("---")
+
+################################################################################
+# Deutch-Auction Functionality
+################################################################################
