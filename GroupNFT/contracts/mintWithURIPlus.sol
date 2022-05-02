@@ -7,6 +7,10 @@ import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721URIStorage.s
 import "@openzeppelin/contracts@4.5.0/access/Ownable.sol";
 import "@openzeppelin/contracts@4.5.0/utils/Counters.sol";
 
+// The FintechNFT contract inherits the following OpenZeppelin:
+// * ERC721
+// * ERC721URIStorage
+// * Ownable
 contract FintechNFT is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
@@ -21,7 +25,7 @@ contract FintechNFT is ERC721, ERC721URIStorage, Ownable {
 
     constructor(address _tokenAddress) ERC721("fintechNFT", "FNTCH") {
         tokenAddress = IERC20(_tokenAddress);
-        maxSupply = 2;
+        maxSupply = 20;
     }
 
     struct digitalArtwork {
@@ -43,8 +47,12 @@ contract FintechNFT is ERC721, ERC721URIStorage, Ownable {
         maxSupply = maxSupply_;
     }
 
-    function safeMint(uint256 tokenId, address to, string memory uri) public onlyOwner {
+    function safeMint(uint256 tokenId, address to, string memory uri) public {
         //uint256 tokenId = _tokenIdCounter.current();
+        require(maxSupply > totalSupply, 'tokens sold out');
+
+        //mintedWallets[msg.sender]++;
+        totalSupply++;
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
