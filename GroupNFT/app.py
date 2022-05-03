@@ -40,6 +40,28 @@ def load_contract():
 # Load the contract
 contract = load_contract()
 
+# Function to get the COOOL (CoolCoin.sol) token contract
+def load_token_contract():
+
+    # Load the contract ABI
+    with open(Path('./contracts/compiled/COOOL_abi.json')) as f:
+        token_contract_abi = json.load(f)
+
+    # Set the contract address (this is the address of the deployed contract)
+    token_contract_address = os.getenv("TOKEN_SMART_CONTRACT_ADDRESS")
+
+    # Get the contract
+    contract = w3.eth.contract(
+        address=token_contract_address,
+        abi=token_contract_abi
+    )
+
+    return contract
+
+# Get the token contract
+token_contract = load_token_contract()
+
+
 ################################################################################
 # Helper functions to pin files and json to Pinata
 ################################################################################
@@ -74,6 +96,21 @@ accounts = w3.eth.accounts
 address = st.selectbox("Select Artwork Owner", options=accounts)
 st.markdown("---")
 
+# Set the FintechNFT contract to be approved to use the COOOL token contract
+contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
+contract_owner = contract.functions.owner().call()
+approve_amount = token_contract.functions.balanceOf(contract_owner).call()
+token_contract.functions.approve(contract_address, approve_amount).transact({'from': address, 'gas': 1000000})
+
+# Mint some COOOL tokens for selected address
+token_contract.functions.mint(address, 100 * 10 ** 18).transact({'from': address, 'gas': 1000000})
+address_balance = token_contract.functions.balanceOf(address).call()
+
+st.write(f"The contract_address is {contract_address}")
+st.write(f"The contract_owner is {contract_owner}")
+st.write(f"The approve_amount is {approve_amount}")
+st.write(f"The address_balance is {address_balance}")
+
 ################################################################################
 # Register New Artwork
 ################################################################################
@@ -98,7 +135,6 @@ if st.button("Register Artwork"):
     st.write("Transaction receipt mined:")
     st.write(dict(receipt))
     st.write("You can view the pinned metadata file with the following IPFS Gateway Link")
-    #token_uri = "[Artwork IPFS Gateway Link](https://ipfs.io/ipfs/{artwork_ipfs_hash})"
     st.markdown(f"[Artwork IPFS Gateway Link](https://ipfs.io/ipfs/{artwork_ipfs_hash})")
     #image_uri = artwork_ipfs_hash[1]
     # st.image(f"https://ipfs.io/ipfs/{image_uri}")

@@ -52,14 +52,16 @@ contract FintechNFT is ERC721, ERC721URIStorage, Ownable {
         require(maxSupply > totalSupply, 'tokens sold out');
 
         //mintedWallets[msg.sender]++;
+        tokenAddress.transferFrom(to, address(this), rate);
+        
         totalSupply++;
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
     }
 
-    function withdrawToken() public onlyOwner {
-        tokenAddress.transfer(msg.sender, tokenAddress.balanceOf(address(this)));
+    function withdrawToken(address to) public onlyOwner {
+        tokenAddress.transfer(to, tokenAddress.balanceOf(address(this)));
     }
 
     function registerDigitalArtwork(

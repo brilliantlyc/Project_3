@@ -623,7 +623,13 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
 		"name": "withdrawToken",
 		"outputs": [],
 		"stateMutability": "nonpayable",

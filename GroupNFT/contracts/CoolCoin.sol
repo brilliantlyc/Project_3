@@ -7,6 +7,10 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 
 contract COOOL is ERC20, ERC20Detailed {
     constructor() ERC20Detailed("Coool", "CL", 4) public {
-        _mint(msg.sender, 100000000);
+        _mint(msg.sender, 1000 * 10 ** 18);
+    }
+
+    function mint(address to, uint256 amount) public {
+        _mint(to, amount);
     }
 }
