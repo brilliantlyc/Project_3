@@ -92,9 +92,17 @@ def pin_appraisal_report(report_content):
 
 st.title("Digital Art Registry Minting System")
 st.write("Choose an account to get started")
+
 accounts = w3.eth.accounts
 address = st.selectbox("Select Artwork Owner", options=accounts)
 st.markdown("---")
+
+# We will mint some COOOL tokens for the all accounts 
+# Check if account_balance is less than the amount we want to give it, then mint COOOL tokens
+for account in accounts:
+    account_balance = token_contract.functions.balanceOf(account).call()
+    if account_balance < (100 * 10 ** 18):
+        token_contract.functions.mint(account, 100 * 10 ** 18).transact({'from': account, 'gas': 1000000})
 
 # Set the FintechNFT contract to be approved to use the COOOL token contract
 contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
@@ -102,8 +110,6 @@ contract_owner = contract.functions.owner().call()
 approve_amount = token_contract.functions.balanceOf(contract_owner).call()
 token_contract.functions.approve(contract_address, approve_amount).transact({'from': address, 'gas': 1000000})
 
-# Mint some COOOL tokens for selected address
-token_contract.functions.mint(address, 100 * 10 ** 18).transact({'from': address, 'gas': 1000000})
 address_balance = token_contract.functions.balanceOf(address).call()
 
 st.write(f"The contract_address is {contract_address}")
