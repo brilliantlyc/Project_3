@@ -14,31 +14,6 @@
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "appraisalValue",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "reportURI",
-				"type": "string"
-			}
-		],
-		"name": "Appraisal",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
 				"indexed": true,
 				"internalType": "address",
 				"name": "owner",
@@ -170,40 +145,6 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "digitalArtCollection",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "artist",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "yearCreated",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "appraisalValue",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "tokenId",
 				"type": "uint256"
 			}
@@ -245,39 +186,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "isMintEnabled",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "maxSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "mintedWallets",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -334,6 +243,35 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "photographyCollection",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "photographer",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "yearCreated",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "rate",
 		"outputs": [
@@ -360,7 +298,7 @@
 			},
 			{
 				"internalType": "string",
-				"name": "artist",
+				"name": "photographer",
 				"type": "string"
 			},
 			{
@@ -369,17 +307,12 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "initialAppraisalValue",
-				"type": "uint256"
-			},
-			{
 				"internalType": "string",
 				"name": "URI",
 				"type": "string"
 			}
 		],
-		"name": "registerDigitalArtwork",
+		"name": "registerPhotography",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -532,13 +465,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "toggleIsMintEnabled",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
