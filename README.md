@@ -1,5 +1,5 @@
-<img src="Images_readme/joe-mint-factory.png" width="210" Alt="Joes" class="center">
 
+<img src="Images_readme/joe-mint-factory.png" width="210" Alt="Joes" class="center">
 
 ## **Background**
 
@@ -25,17 +25,17 @@ Joe's discovered the fascinating world of digital tokens and he's looking to bui
 ## **Technologies**
 
 ### Blockchain related
-- **Solidity**: Programming language used to write smart contracts. <img src="Images_juan/solidity.png" width="15" Alt="Joes" class="center">
-- **Remix**: IDE used to write smart contracts in Solidity. It contains functionality that enables a user to compile and deploy contracts outside of a blockchain. <img src="Images_juan/remix.png" width="15" Alt="Joes" class="center">
-- **MetaMask**: Browser extension of cryptocurrency wallet used to connect and deploy contracts & transactions on a blockchain.<img src="Images_juan/metamask.png" width="15" Alt="Joes" class="center">
-- **(Polygon) Testnet**: Testnets allows developers to deploy contracts and transact in a blokchain without incurring gas fees. It is a simulation of a real blokchain which is perfect for developmental puporses <img src="Images_juan/polygon.png" width="15" Alt="Joes" class="center"> 
-- **Pinata**:  Pinata's powerful but easy-to-use product allows users to upload, share, and manage files with unmatched speed throughout the IPFS network. <img src="Images_juan/pinata.png" width="15" Alt="Joes" class="center">
-- **IPFS**: The InterPlanetary File System is a protocol and peer-to-peer network for storing and sharing data in a distributed file system. <img src="Images_juan/IPFS.png" width="15" Alt="Joes" class="center">
+- **Solidity**: Programming language used to write smart contracts. <img src="Images_readme/solidity.png" width="15" Alt="Joes" class="center">
+- **Remix**: IDE used to write smart contracts in Solidity. It contains functionality that enables a user to compile and deploy contracts outside of a blockchain. <img src="Images_readme/remix.png" width="15" Alt="Joes" class="center">
+- **MetaMask**: Browser extension of cryptocurrency wallet used to connect and deploy contracts & transactions on a blockchain.<img src="Images_readme/metamask.png" width="15" Alt="Joes" class="center">
+- **(Polygon) Testnet**: Testnets allows developers to deploy contracts and transact in a blokchain without incurring gas fees. It is a simulation of a real blokchain which is perfect for developmental puporses <img src="Images_readme/polygon.png" width="15" Alt="Joes" class="center"> 
+- **Pinata**:  Pinata's powerful but easy-to-use product allows users to upload, share, and manage files with unmatched speed throughout the IPFS network. <img src="Images_readme/pinata.png" width="15" Alt="Joes" class="center">
+- **IPFS**: The InterPlanetary File System is a protocol and peer-to-peer network for storing and sharing data in a distributed file system. <img src="Images_readme/IPFS.png" width="15" Alt="Joes" class="center">
 - **Web3.py:** is a Python library for interacting with Ethereum.
 
 ### Other
-- **Python**: Programming language used to develop the back end of our ""Photo Registry"" UI. <img src="Images_juan/python.png" width="15" Alt="Joes" class="center">
-- **Streamlit**: Python package used to develop a UI web application.<img src="Images_juan/streamlit.png" width="20" Alt="Joes" class="center"> 
+- **Python**: Programming language used to develop the back end of our ""Photo Registry"" UI. <img src="Images_readme/python.png" width="15" Alt="Joes" class="center">
+- **Streamlit**: Python package used to develop a UI web application.<img src="Images_readme/streamlit.png" width="20" Alt="Joes" class="center"> 
 
 
 
