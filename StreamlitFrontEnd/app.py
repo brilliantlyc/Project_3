@@ -92,10 +92,10 @@ address = st.selectbox("Select Photography Owner", options=accounts)
 
 
 # We will mint some JoeCoin tokens for all the accounts 
-# Check if account_balance is less than the amount we want to give it, then mint JoeCoin tokens
+# Check if account_balance is zero, then mint JoeCoin tokens
 for account in accounts:
     account_balance = token_contract.functions.balanceOf(account).call()
-    if account_balance < (100 * 10 ** 18):
+    if account_balance == 0:
         token_contract.functions.mint(account, 100 * 10 ** 18).transact({'from': account, 'gas': 1000000})
 
 # Set the FintechNFT contract to be approved to use the JoeCoin token contract
