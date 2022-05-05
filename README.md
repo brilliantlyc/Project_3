@@ -1,5 +1,5 @@
 
-<img src="Images_readme/joe-mint-factory.png" width="210" Alt="Joes" class="center">
+<img src="Images_readme/Joe-mint-factory.png" width="210" Alt="Joes" class="center">
 
 ## **Background**
 
@@ -30,7 +30,7 @@ Joe's discovered the fascinating world of digital tokens and he's looking to bui
 - **MetaMask**: Browser extension of cryptocurrency wallet used to connect and deploy contracts & transactions on a blockchain.<img src="Images_readme/metamask.png" width="15" Alt="Joes" class="center">
 - **(Polygon) Testnet**: Testnets allows developers to deploy contracts and transact in a blokchain without incurring gas fees. It is a simulation of a real blokchain which is perfect for developmental puporses <img src="Images_readme/polygon.png" width="15" Alt="Joes" class="center"> 
 - **Pinata**:  Pinata's powerful but easy-to-use product allows users to upload, share, and manage files with unmatched speed throughout the IPFS network. <img src="Images_readme/pinata.png" width="15" Alt="Joes" class="center">
-- **IPFS**: The InterPlanetary File System is a protocol and peer-to-peer network for storing and sharing data in a distributed file system. <img src="Images_readme/IPFS.png" width="15" Alt="Joes" class="center">
+- **IPFS**: The InterPlanetary File System is a protocol and peer-to-peer network for storing and sharing data in a distributed file system. <img src="Images_readme/ipfs.png" width="15" Alt="Joes" class="center">
 - **Web3.py:** is a Python library for interacting with Ethereum.
 
 ### Other
