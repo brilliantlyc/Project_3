@@ -87,6 +87,13 @@ We minted our tokens to Polygon's testnet and showcased our NFT on Opensea.
 
 <img src="Images_readme/jalal-3.png" width="300" height="400" Alt="Joes" class="center">
 
+*URL to Joe token's contract on Polygon*
+
+https://mumbai.polygonscan.com/token/0xfe289af009585a246dc5298d60ad8d7460ac8c9f
+
+*URL to Joe's NFT contract on Polygon* 
+
+https://mumbai.polygonscan.com/token/0x14ecb29b607ac3909ae09549fa6e66a1f16ae84b
 
 
 ### **Part III: Deutch Auction**
